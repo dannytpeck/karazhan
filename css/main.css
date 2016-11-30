@@ -1,0 +1,56 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#load-number {
+  width: 10%;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+#html-description {
+  display: block;
+  margin-top: 10px;
+  width: 100%;
+}
+
+#short-description {
+  width: 100%;
+}
+
+#subgroup-number {
+  width: 5%;
+  text-align: center;
+  margin-right: 4px;
+}
+
+.left {
+  float: left;
+  width: 35%;
+  margin-left: 10px;
+}
+
+.right {
+  float: left;
+  width: 55%;
+  margin-left: 4%;
+}
+
+.right input {
+  width: 32.9%;
+  border: 1px solid rgb(169, 169, 169);
+}
+
+.verified-content {
+  display: none;
+}

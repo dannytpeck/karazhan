@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+  </head>
+  <body>
+
+    <h2>Upload once, upload anywhere!</h2>
+
+    <div class="left">
+      <div>
+        <select class="cie-or-verified">
+          <option value="CIE">CIE</option>
+          <option value="Verified Challenge">Verified Challenge</option>
+        </select>
+        <p>
+          <span>How many programs?</span>
+          <input id="load-number" type="number" min="1" max="20" value="1" />
+        </p>
+      </div>
+      <div class="employers">
+        <p>
+          <input id="eid0" type="text" placeholder="EmployerName" />
+          <input id="psk0" type="text" placeholder="PSK" />
+        </p>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="shared-fields">
+        <p>
+          <input id="event-name" type="text" placeholder="EventName">
+          <input id="event-id" type="text" placeholder="EventId">
+          <input id="points-awarded" type="text" placeholder="PointsAwarded">
+        </p>
+        <p>
+          <input id="event-image-url" type="text" placeholder="EventImageUrl" />
+          <input id="max-occurrences" type="text" placeholder="MaxOccurrences" />
+          <button id="limeade-upload" type="button" name="Upload">Upload to Limeade</button>
+        </p>
+        <div class="verified-content">
+          <p>
+            <input id="start-date" type="text" placeholder="StartDate" />
+            <input id="end-date" type="text" placeholder="EndDate" />
+          </p>
+          <p><input id="short-description" type="text" placeholder="ShortDescription"></p>
+        </div>
+        <p><textarea id="html-description" name="HtmlDescription" rows="8" cols="72" placeholder="HtmlDescription"></textarea></p>
+        <p>
+          <input id="subgroup-number" type="number" min="1" max="5" value="1" /><span>Subgroup(s)</span>
+          <div class="subgroups">
+            <p>
+              <input id="subgroup0" type="text" placeholder="SubgroupId" />
+            </p>
+          </div>
+        </p>
+        <p>
+          <input id="field-1-name" type="text" placeholder="Field1Name" />
+          <input id="field-1-value" type="text" placeholder="Field1Value" />
+        </p>
+        <p>
+          <input id="field-2-name" type="text" placeholder="Field2Name" />
+          <input id="field-2-value" type="text" placeholder="Field2Value" />
+        </p>
+        <p>
+          <input id="field-3-name" type="text" placeholder="Field3Name" />
+          <input id="field-3-value" type="text" placeholder="Field3Value" />
+        </p>
+      </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div class="modal fade" id="upload-modal" tabindex="-1" role="dialog" aria-labelledby="upload-modal-label">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="my-modal-label">Upload Log</h4>
+          </div>
+          <div class="modal-body" id="upload-modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+</html>
