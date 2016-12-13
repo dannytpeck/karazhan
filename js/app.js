@@ -38,6 +38,7 @@ const createCSV = (employer) => {
   const employerName = $(`#eid${employer}`).val();
 	const eventId = $('#event-id').val();
   const eventName = $('#event-name').val();
+	const displayPriority = $('#display-priority').val();
 	const pointsAwarded = $('#points-awarded').val();
 	const eventImageUrl = $('#event-image-url').val();
   const maxOccurrences = $('#max-occurrences').val();
@@ -67,7 +68,7 @@ const createCSV = (employer) => {
 			employerName,
 			eventId,
 			eventName,
-			'',
+			displayPriority,
 			'IncentivePoints',
 			pointsAwarded,
 			'',
