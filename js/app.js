@@ -108,12 +108,13 @@ const limeadeUpload = () => {
   for (let program = 0; program < $('#load-number').val(); program++) {
 
     const csv = createCSV(program);
-    const url = 'https://mywellnessnumbers.com/api/limeade-upload-incentive-events/';
+    const url = 'http://mywellnessnumbers.sftp.adurolife.com/limeade-upload/';
 
     const params = {
       e: $(`#eid${program}`).val(),
       psk: $(`#psk${program}`).val(),
-			data: csv.join('\n')
+			data: csv.join('\n'),
+			type: 'IncentiveEvents'
     };
 
 		// Open Modal
