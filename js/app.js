@@ -126,12 +126,11 @@ const updateNumberOfPrograms = () => {
 	let containerHTML = '';
 
   for (let i = 0; i < $('#load-number').val(); i++) {
-    containerHTML += `
-      <p>
-        <input type="text" id="eid${i}" placeholder="EmployerName" />
-        <input type="text" id="psk${i}" placeholder="PSK" />
-      </p>
-    `;
+    containerHTML +=
+		`<p>
+      <input type="text" id="eid${i}" placeholder="EmployerName" />
+    	<input type="text" id="psk${i}" placeholder="PSK" />
+    </p>`;
   }
 
   $('.employers').html(containerHTML);
@@ -141,18 +140,16 @@ const updateNumberOfSubgroups = () => {
 	let containerHTML = '';
 
   for (let i = 0; i < $('#subgroup-number').val(); i++) {
-    containerHTML += `
-      <p>
-				<input id="subgroup${i}" type="text" placeholder="SubgroupId" />
-      </p>
-    `;
+    containerHTML +=
+		`<p>
+			<input id="subgroup${i}" type="text" placeholder="SubgroupId" />
+    </p>`;
   }
 
   $('.subgroups').html(containerHTML);
 }
 
 // Event listeners
-
 $('#limeade-upload').click(limeadeUpload);
 
 $('#load-number').keyup(updateNumberOfPrograms);
