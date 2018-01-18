@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
@@ -17,6 +17,8 @@
         <p>
           <span>How many programs?</span>
           <input id="load-number" type="number" min="1" max="20" value="1" />
+          <button id="csv-import" type="file" name="Import" class="btn btn-primary">Import from CSV</button>
+          <input type="file" id="file-input" accept="*.csv" style="display: none" onchange="handleFiles(this.files)" />
         </p>
       </div>
       <div class="employers">
@@ -37,7 +39,7 @@
         <p>
           <input id="event-image-url" type="text" placeholder="EventImageUrl" />
           <input id="max-occurrences" type="text" placeholder="MaxOccurrences" />
-          <button id="limeade-upload" type="button" name="Upload">Upload to Limeade</button>
+          <button id="limeade-upload" type="button" name="Upload" class="btn btn-primary">Upload to Limeade</button>
         </p>
         <p>
           <input id="display-priority" type="text" placeholder="DisplayPriority" />
@@ -83,7 +85,8 @@
     </div>
 
   </body>
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="js/app.js"></script>
 </html>

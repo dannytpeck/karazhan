@@ -24,14 +24,15 @@ h2 {
   width: 100%;
 }
 
-#short-description {
-  width: 100%;
-}
-
 #subgroup-number {
   width: 5%;
   text-align: center;
   margin-right: 4px;
+}
+
+#csv-import,
+#limeade-upload {
+  margin-left: 10px;
 }
 
 .left {
@@ -49,8 +50,4 @@ h2 {
 .right input {
   width: 32.9%;
   border: 1px solid rgb(169, 169, 169);
-}
-
-.verified-content {
-  display: none;
 }

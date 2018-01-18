@@ -149,6 +149,85 @@ const updateNumberOfSubgroups = () => {
   $('.subgroups').html(containerHTML);
 }
 
+// From https://gist.github.com/iwek/7154578#file-csv-to-json-js
+// Convert csv string to JSON
+function csvToJson(csv) {
+  var lines = csv.split("\n");
+  var result = [];
+  var headers = lines[0].split(",");
+
+  for(var i=1; i<lines.length; i++) {
+    var obj = {};
+
+    var row = lines[i],
+      queryIdx = 0,
+      startValueIdx = 0,
+      idx = 0;
+
+    if (row.trim() === '') { continue; }
+
+    while (idx < row.length) {
+      /* if we meet a double quote we skip until the next one */
+      var c = row[idx];
+
+      if (c === '"') {
+        do { c = row[++idx]; } while (c !== '"' && idx < row.length - 1);
+      }
+
+      if (c === ',' || /* handle end of line with no comma */ idx === row.length - 1) {
+        /* we've got a value */
+        var value = row.substr(startValueIdx, idx - startValueIdx).trim();
+
+        /* skip first double quote */
+        if (value[0] === '"') { value = value.substr(1); }
+        /* skip last comma */
+        if (value[value.length - 1] === ',') { value = value.substr(0, value.length - 1); }
+        /* skip last double quote */
+        if (value[value.length - 1] === '"') { value = value.substr(0, value.length - 1); }
+
+        var key = headers[queryIdx++];
+        obj[key] = value;
+        startValueIdx = idx + 1;
+      }
+
+      ++idx;
+    }
+
+    result.push(obj);
+  }
+  return result;
+}
+
+
+function handleFiles() {
+	var reader = new FileReader();
+	reader.onload = function() {
+		// Do something with the data
+		var cie = csvToJson(reader.result)[0];
+		console.log(cie);
+
+		// Populate the input fields
+		$('#event-name').val(cie.EventName);
+		$('#event-id').val(cie.EventId);
+		$('#points-awarded').val(cie.PointsAwarded);
+		$('#event-image-url').val(cie.EventImageUrl);
+		$('#max-occurrences').val(cie.MaxOccurrences);
+		$('#display-priority').val(cie.DisplayPriority);
+		$('#html-description').val(cie.HtmlDescription.replace(/""/g, '"'));
+		$('#subgroup0').val(cie.SubgroupId);
+		$('#field-1-name').val(cie.Field1Name);
+		$('#field-1-value').val(cie.Field1Value);
+		$('#field-2-name').val(cie.Field2Name);
+		$('#field-2-value').val(cie.Field2Value);
+		$('#field-3-name').val(cie.Field3Name);
+		$('#field-3-value').val(cie.Field3Value);
+
+	};
+	// start reading the file. When it is done, calls the onload event defined above.
+	reader.readAsBinaryString(document.querySelector('#file-input').files[0]);
+}
+
+
 // Event listeners
 $('#limeade-upload').click(limeadeUpload);
 
@@ -157,3 +236,8 @@ $('#load-number').click(updateNumberOfPrograms);
 
 $('#subgroup-number').keyup(updateNumberOfSubgroups);
 $('#subgroup-number').click(updateNumberOfSubgroups);
+
+$('#csv-import').click(function(e) {
+	$('#file-input').click();
+	e.preventDefault();
+});
