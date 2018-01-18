@@ -44,11 +44,6 @@ const createCSV = (employer) => {
   const maxOccurrences = $('#max-occurrences').val();
   const htmlDescription = $('#html-description').val();
 
-	// Used by Verified Challenges
-	const startDate = $('#start-date').val();
-	const endDate = $('#end-date').val();
-	const shortDescription = $('#short-description').val();
-
   // Targeting
   const field1Name = $('#field-1-name').val();
   const field1Value = $('#field-1-value').val();
@@ -56,9 +51,6 @@ const createCSV = (employer) => {
   const field2Value = $('#field-2-value').val();
   const field3Name = $('#field-3-name').val();
   const field3Value = $('#field-3-value').val();
-
-	// CIE or Verified
-	const type = $('.cie-or-verified').val();
 
 	// For each subgroup, add a CIE
 	for (let i = 0; i < $('#subgroup-number').val(); i++) {
@@ -73,21 +65,21 @@ const createCSV = (employer) => {
 			pointsAwarded,
 			'',
 			'0',
-			type === 'Verified Challenge' ? '0' : '1',
+			'1',
 			'0',
 			'1',
 			'0',
-		  type === 'Verified Challenge' ? '1' : '0',
+		  '0',
 			'0',
 			'',
 			'',
 			eventImageUrl,
 			maxOccurrences,
-			type === 'Verified Challenge' ? startDate : '',
-			type === 'Verified Challenge' ? endDate : '',
 			'',
 			'',
-			type === 'Verified Challenge' ? `"${shortDescription.replace(/"/g, '""')}"` : '',
+			'',
+			'',
+			'',
 	    `"${htmlDescription.replace(/"/g, '""')}"`,
 			subgroupId,
 			field1Name,
@@ -168,12 +160,3 @@ $('#load-number').click(updateNumberOfPrograms);
 
 $('#subgroup-number').keyup(updateNumberOfSubgroups);
 $('#subgroup-number').click(updateNumberOfSubgroups);
-
-$('.cie-or-verified').change(() => {
-	const selection = $('.cie-or-verified').val();
-	if (selection === 'Verified Challenge') {
-		$('.verified-content').show();
-	} else {
-		$('.verified-content').hide();
-	}
-})
