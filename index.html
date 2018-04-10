@@ -18,8 +18,6 @@
         <p>
           <span>How many programs?</span>
           <input id="load-number" type="number" min="1" max="20" value="1" />
-          <button id="csv-import" type="file" name="Import" class="btn btn-light">Import from CSV</button>
-          <input type="file" id="file-input" accept="*.csv" style="display: none" onchange="handleFiles(this.files)" />
         </p>
       </div>
       <div class="employers">
@@ -33,6 +31,10 @@
     <div class="right">
       <h4 style="text-transform: uppercase;">Content</h4>
       <div class="shared-fields">
+        <p>
+          <button id="csv-import" type="file" name="Import" class="btn btn-light">Import from CSV</button>
+          <input type="file" id="file-input" accept="*.csv" style="display: none" onchange="handleFiles(this.files)" />
+        </p>
         <p>
           <input id="event-name" type="text" placeholder="EventName">
           <input id="event-id" type="text" placeholder="EventId">
