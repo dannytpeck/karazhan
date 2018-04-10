@@ -40,6 +40,7 @@ const createCSV = (employer) => {
   const eventName = $('#event-name').val();
 	const displayPriority = $('#display-priority').val();
 	const pointsAwarded = $('#points-awarded').val();
+	const showInProgram = $('#show-in-program').val();
 	const eventImageUrl = $('#event-image-url').val();
   const maxOccurrences = $('#max-occurrences').val();
   const htmlDescription = $('#html-description').val();
@@ -67,7 +68,7 @@ const createCSV = (employer) => {
 			'0',
 			'0',
 			'0',
-			'1',
+			showInProgram,
 			'0',
 		  '0',
 			'0',
@@ -213,6 +214,7 @@ function handleFiles() {
 		$('#event-image-url').val(cie.EventImageUrl);
 		$('#max-occurrences').val(cie.MaxOccurrences);
 		$('#display-priority').val(cie.DisplayPriority);
+		$('#show-in-program').val(cie.ShowInProgram);
 		$('#html-description').val(cie.HtmlDescription.replace(/""/g, '"'));
 		$('#subgroup0').val(cie.SubgroupId);
 		$('#field-1-name').val(cie.Field1Name);
