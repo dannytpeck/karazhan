@@ -14,11 +14,11 @@
 
     <div class="left">
       <div>
+        <h4 style="text-transform: uppercase;">Clients</h4>
         <p>
-          <span>How many programs?</span>
+          <label for="load-number">How many programs?</label>
           <input id="load-number" type="number" min="1" max="20" value="1" />
-          <button id="csv-import" type="file" name="Import" class="btn btn-primary">Import from CSV</button>
-          <input type="file" id="file-input" accept="*.csv" style="display: none" onchange="handleFiles(this.files)" />
+          <!-- TODO: add Import from JSON button here -->
         </p>
       </div>
       <div class="employers">
@@ -30,7 +30,12 @@
     </div>
 
     <div class="right">
+      <h4 style="text-transform: uppercase;">Content</h4>
       <div class="shared-fields">
+        <p>
+          <button id="csv-import" type="file" name="Import" class="btn btn-light" style="margin-left: 0px">Import from CSV</button>
+          <input type="file" id="file-input" accept="*.csv" style="display: none" onchange="handleFiles(this.files)" />
+        </p>
         <p>
           <input id="event-name" type="text" placeholder="EventName">
           <input id="event-id" type="text" placeholder="EventId">
@@ -43,6 +48,7 @@
         </p>
         <p>
           <input id="display-priority" type="text" placeholder="DisplayPriority" />
+          <input id="show-in-program" type="text" placeholder="ShowInProgram">
         </p>
         <p><textarea id="html-description" name="HtmlDescription" rows="8" cols="72" placeholder="HtmlDescription"></textarea></p>
         <p>
