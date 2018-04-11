@@ -123,11 +123,12 @@ const limeadeUpload = () => {
 
 }
 
+// TODO: change #load-number into parameter so updateNumberOfPrograms(numberOfPrograms) can be called
 const updateNumberOfPrograms = () => {
 	const numberOfPrograms = $('#load-number').val();
 	let containerHTML = '';
 
-  for (let i = 0; i < $('#load-number').val(); i++) {
+  for (let i = 0; i < numberOfPrograms; i++) {
     containerHTML +=
 		`<p>
       <input type="text" id="eid${i}" placeholder="EmployerName" />
@@ -158,12 +159,16 @@ function handleJsonFiles() {
 		var json = JSON.parse(reader.result);
 		// updateNumberOfPrograms(json.length);
 		console.log(json);
+		console.log(json.clients.length + " clients in json");
 
 		// Populate the client input fields
-		// TODO: get data from JSON into first input row
-		$('#eid0').val(json.clients[0].e);
-		$('#psk0').val(json.clients[0].psk);
 		// TODO: convert data-grab into loop for each Client row
+		for (let i = 0; i < json.length; i++) {
+			$('#eid' + i).val(json.clients[i].e);
+			$('#psk' + i).val(json.clients[i].psk);
+		}
+		// $('#eid0').val(json.clients[0].e);
+		// $('#psk0').val(json.clients[0].psk);
 
 	};
 	// start reading the file. When it is done, calls the onload event defined above.
