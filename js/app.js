@@ -151,6 +151,25 @@ const updateNumberOfSubgroups = () => {
   $('.subgroups').html(containerHTML);
 }
 
+function handleJsonFiles() {
+	var reader = new FileReader();
+	reader.onload = function() {
+		// work with the JSON data
+		var json = JSON.parse(reader.result);
+		// updateNumberOfPrograms(json.length);
+		console.log(json);
+
+		// Populate the client input fields
+		// TODO: get data from JSON into first input row
+		$('#eid0').val(json.clients[0].e);
+		$('#psk0').val(json.clients[0].psk);
+		// TODO: convert data-grab into loop for each Client row
+
+	};
+	// start reading the file. When it is done, calls the onload event defined above.
+	reader.readAsBinaryString(document.querySelector('#json-input').files[0]);
+}
+
 // From https://gist.github.com/iwek/7154578#file-csv-to-json-js
 // Convert csv string to JSON
 function csvToJson(csv) {
@@ -198,25 +217,6 @@ function csvToJson(csv) {
     result.push(obj);
   }
   return result;
-}
-
-function handleJsonFiles() {
-	var reader = new FileReader();
-	reader.onload = function() {
-		// work with the JSON data
-		var json = JSON.parse(reader.result);
-		// updateNumberOfPrograms(json.length);
-		console.log(json);
-
-		// Populate the client input fields
-		// TODO: get data from JSON into first input row
-		$('#eid0').val(json.clients[0].e);
-		$('#psk0').val(json.clients[0].psk);
-		// TODO: convert data-grab into loop for each Client row
-
-	};
-	// start reading the file. When it is done, calls the onload event defined above.
-	reader.readAsBinaryString(document.querySelector('#json-input').files[0]);
 }
 
 function handleCsvFiles() {
