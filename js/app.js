@@ -124,6 +124,7 @@ const limeadeUpload = () => {
 }
 
 const updateNumberOfPrograms = () => {
+	const numberOfPrograms = $('#load-number').val();
 	let containerHTML = '';
 
   for (let i = 0; i < $('#load-number').val(); i++) {
@@ -203,12 +204,16 @@ function handleJsonFiles() {
 	var reader = new FileReader();
 	reader.onload = function() {
 		// work with the JSON data
-		var json = reader.result[0];
+		var json = JSON.parse(reader.result);
+		// updateNumberOfPrograms(json.length);
 		console.log(json);
 
 		// Populate the client input fields
-		$('#eid0').val(json.e);
-		$('#psk0').val(json.psk);
+		// TODO: get data from JSON into first input row
+		$('#eid0').val(json.clients[0].e);
+		$('#psk0').val(json.clients[0].psk);
+		// TODO: convert data-grab into loop for each Client row
+
 	};
 	// start reading the file. When it is done, calls the onload event defined above.
 	reader.readAsBinaryString(document.querySelector('#json-input').files[0]);
