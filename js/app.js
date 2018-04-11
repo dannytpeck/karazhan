@@ -199,8 +199,22 @@ function csvToJson(csv) {
   return result;
 }
 
+function handleJsonFiles() {
+	var reader = new FileReader();
+	reader.onload = function() {
+		// work with the JSON data
+		var json = reader.result[0];
+		console.log(json);
 
-function handleFiles() {
+		// Populate the client input fields
+		$('#eid0').val(json.e);
+		$('#psk0').val(json.psk);
+	};
+	// start reading the file. When it is done, calls the onload event defined above.
+	reader.readAsBinaryString(document.querySelector('#json-input').files[0]);
+}
+
+function handleCsvFiles() {
 	var reader = new FileReader();
 	reader.onload = function() {
 		// Do something with the data
@@ -226,7 +240,7 @@ function handleFiles() {
 
 	};
 	// start reading the file. When it is done, calls the onload event defined above.
-	reader.readAsBinaryString(document.querySelector('#file-input').files[0]);
+	reader.readAsBinaryString(document.querySelector('#csv-input').files[0]);
 }
 
 
@@ -239,7 +253,12 @@ $('#load-number').click(updateNumberOfPrograms);
 $('#subgroup-number').keyup(updateNumberOfSubgroups);
 $('#subgroup-number').click(updateNumberOfSubgroups);
 
+$('#json-import').click(function(e) {
+	$('#json-input').click();
+	e.preventDefault();
+});
+
 $('#csv-import').click(function(e) {
-	$('#file-input').click();
+	$('#csv-input').click();
 	e.preventDefault();
 });
