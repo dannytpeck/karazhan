@@ -123,6 +123,10 @@ const limeadeUpload = () => {
 
 }
 
+// Updates number of Client Programs to update
+// based on changing value of #load-number input box
+// or uploading a JSON file to parse from
+// TODO: Fix bug where all inputs are cleared if you load from JSON then change input box value
 const updateNumberOfPrograms = (numberOfPrograms) => {
 	let containerHTML = '';
 
