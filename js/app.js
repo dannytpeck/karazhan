@@ -123,10 +123,20 @@ const limeadeUpload = () => {
 
 }
 
-const updateNumberOfPrograms = () => {
+// Updates number of Client Programs to upload to based on:
+// changing value of #load-number input box
+// or uploading a JSON file to parse from
+// TODO: Fix bug where all inputs are cleared if you load from JSON then change input box value
+const updateNumberOfPrograms = (numberOfPrograms) => {
 	let containerHTML = '';
 
-  for (let i = 0; i < $('#load-number').val(); i++) {
+	// checks if numberOfPrograms was passed as a parameter/number
+	if (typeof numberOfPrograms !== 'number') {
+		// if it's not, set it to equal the value of #load-number input box
+		numberOfPrograms = $('#load-number').val();
+	}
+
+  for (let i = 0; i < numberOfPrograms; i++) {
     containerHTML +=
 		`<p>
       <input type="text" id="eid${i}" placeholder="EmployerName" />
@@ -148,6 +158,27 @@ const updateNumberOfSubgroups = () => {
   }
 
   $('.subgroups').html(containerHTML);
+}
+
+function handleJsonFiles() {
+	var reader = new FileReader();
+	reader.onload = function() {
+		// work with the JSON data
+		var json = JSON.parse(reader.result);
+		updateNumberOfPrograms(json.clients.length);
+		$('#load-number').val(json.clients.length)
+		console.log(json);
+		console.log(json.clients.length + " clients in json");
+
+		// Populate the client input fields
+		for (let i = 0; i < json.clients.length; i++) {
+			$('#eid' + i).val(json.clients[i].e);
+			$('#psk' + i).val(json.clients[i].psk);
+		}
+
+	};
+	// start reading the file. When it is done, calls the onload event defined above.
+	reader.readAsBinaryString(document.querySelector('#json-input').files[0]);
 }
 
 // From https://gist.github.com/iwek/7154578#file-csv-to-json-js
@@ -199,8 +230,7 @@ function csvToJson(csv) {
   return result;
 }
 
-
-function handleFiles() {
+function handleCsvFiles() {
 	var reader = new FileReader();
 	reader.onload = function() {
 		// Do something with the data
@@ -226,7 +256,7 @@ function handleFiles() {
 
 	};
 	// start reading the file. When it is done, calls the onload event defined above.
-	reader.readAsBinaryString(document.querySelector('#file-input').files[0]);
+	reader.readAsBinaryString(document.querySelector('#csv-input').files[0]);
 }
 
 
@@ -239,7 +269,12 @@ $('#load-number').click(updateNumberOfPrograms);
 $('#subgroup-number').keyup(updateNumberOfSubgroups);
 $('#subgroup-number').click(updateNumberOfSubgroups);
 
+$('#json-import').click(function(e) {
+	$('#json-input').click();
+	e.preventDefault();
+});
+
 $('#csv-import').click(function(e) {
-	$('#file-input').click();
+	$('#csv-input').click();
 	e.preventDefault();
 });
