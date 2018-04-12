@@ -123,8 +123,8 @@ const limeadeUpload = () => {
 
 }
 
-// Updates number of Client Programs to update
-// based on changing value of #load-number input box
+// Updates number of Client Programs to upload to based on:
+// changing value of #load-number input box
 // or uploading a JSON file to parse from
 // TODO: Fix bug where all inputs are cleared if you load from JSON then change input box value
 const updateNumberOfPrograms = (numberOfPrograms) => {
@@ -171,7 +171,6 @@ function handleJsonFiles() {
 		console.log(json.clients.length + " clients in json");
 
 		// Populate the client input fields
-		// TODO: get data from json file into appropriate fields
 		for (let i = 0; i < json.clients.length; i++) {
 			$('#eid' + i).val(json.clients[i].e);
 			$('#psk' + i).val(json.clients[i].psk);
