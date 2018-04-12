@@ -168,10 +168,9 @@ function handleJsonFiles() {
 
 		// Populate the client input fields
 		// TODO: get data from json file into appropriate fields
-		for (let i = 0; i < json.length; i++) {
+		for (let i = 0; i < json.clients.length; i++) {
 			$('#eid' + i).val(json.clients[i].e);
 			$('#psk' + i).val(json.clients[i].psk);
-			console.log(i);
 		}
 
 	};
