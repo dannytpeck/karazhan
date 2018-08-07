@@ -101,7 +101,7 @@ const limeadeUpload = () => {
   for (let program = 0; program < $('#load-number').val(); program++) {
 
     const csv = createCSV(program);
-    const url = 'http://mywellnessnumbers.sftp.adurolife.com/limeade-upload/';
+    const url = 'https://calendarbuilder.dev.adurolife.com/limeade-upload/';
 
     const params = {
       e: $(`#eid${program}`).val(),
