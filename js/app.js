@@ -137,11 +137,18 @@ const updateNumberOfPrograms = (numberOfPrograms) => {
 	}
 
   for (let i = 0; i < numberOfPrograms; i++) {
-    containerHTML +=
-		`<p>
-      <input type="text" id="eid${i}" placeholder="EmployerName" />
-    	<input type="text" id="psk${i}" placeholder="PSK" />
-    </p>`;
+		containerHTML +=
+		`<div>
+			<div class="form-group">
+				<select id="eid${i}" class="form-control custom-select" onchange="fetchPsk(this.value, ${i})">
+					<option defaultValue>Select Employer</option>
+					${renderEmployerNames()}
+				</select>
+			</div>
+			<div class="form-group" style="display: none;">
+    		<input id="psk${i}" class="form-control" type="text" />
+			</div>
+    </div>`;
   }
 
   $('.employers').html(containerHTML);
@@ -259,6 +266,23 @@ function handleCsvFiles() {
 	reader.readAsBinaryString(document.querySelector('#csv-input').files[0]);
 }
 
+let clients = [];
+
+function renderEmployerNames() {
+	let html = '';
+  clients.map((client) => {
+    html += `<option>${client.fields['Limeade e=']}</option>`;
+  });
+	return html;
+}
+
+function fetchPsk(value, i) {
+	clients.forEach((client) => {
+		if (client.fields['Limeade e='] === value) {
+			$('#psk' + i).val(client.fields['Limeade PSK']);
+		}
+	});
+}
 
 // Event listeners
 $('#limeade-upload').click(limeadeUpload);
@@ -278,3 +302,39 @@ $('#csv-import').click(function(e) {
 	$('#csv-input').click();
 	e.preventDefault();
 });
+
+
+// Do when loaded
+function drawEmployers() {
+	let containerHTML = '';
+	containerHTML +=
+	`<div>
+		<div class="form-group">
+			<select id="eid0" class="form-control custom-select" onchange="fetchPsk(this.value, 0)">
+				<option defaultValue>Select Employer</option>
+				${renderEmployerNames()}
+			</select>
+		</div>
+
+		<div class="form-group" style="display: none;">
+			<input id="psk0" class="form-control" type="text" />
+		</div>
+	</div>`;
+	$('.employers').html(containerHTML);
+}
+
+(function() {
+	$.getJSON('https://api.airtable.com/v0/appHXXoVD1tn9QATh/Clients?api_key=keyCxnlep0bgotSrX&view=sorted').done(data => {
+		let records = data.records;
+
+		if (data.offset) {
+			$.getJSON(`https://api.airtable.com/v0/appHXXoVD1tn9QATh/Clients?api_key=keyCxnlep0bgotSrX&view=sorted&offset=${data.offset}`).done(data => {
+				clients = [...records, ...data.records];
+				drawEmployers();
+			});
+		} else {
+			clients = records;
+			drawEmployers();
+		}
+	});
+}());
