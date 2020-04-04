@@ -41,6 +41,7 @@ const createCSV = (employer) => {
 	const displayPriority = $('#display-priority').val();
 	const pointsAwarded = $('#points-awarded').val();
 	const showInProgram = $('#show-in-program').val();
+	const isOngoing = $('#is-ongoing').val();
 	const eventImageUrl = $('#event-image-url').val();
   const maxOccurrences = $('#max-occurrences').val();
   const htmlDescription = $('#html-description').val();
