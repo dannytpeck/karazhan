@@ -67,7 +67,7 @@ const createCSV = (employer) => {
 			pointsAwarded,
 			'',
 			'1', // AllowSameDay
-			'0', // IsOngoing
+			isOngoing,
 			'0', // IsDisabled
 			showInProgram,
 			'0',
@@ -252,6 +252,7 @@ function handleCsvFiles() {
 		$('#event-image-url').val(cie.EventImageUrl);
 		$('#max-occurrences').val(cie.MaxOccurrences);
 		$('#display-priority').val(cie.DisplayPriority);
+		$('#is-ongoing').val(cie.IsOngoing);
 		$('#show-in-program').val(cie.ShowInProgram);
 		$('#html-description').val(cie.HtmlDescription.replace(/""/g, '"'));
 		$('#subgroup0').val(cie.SubgroupId);
