@@ -41,6 +41,7 @@ const createCSV = (employer) => {
 	const displayPriority = $('#display-priority').val();
 	const pointsAwarded = $('#points-awarded').val();
 	const showInProgram = $('#show-in-program').val();
+	const isOngoing = $('#is-ongoing').val();
 	const eventImageUrl = $('#event-image-url').val();
   const maxOccurrences = $('#max-occurrences').val();
   const htmlDescription = $('#html-description').val();
@@ -65,9 +66,9 @@ const createCSV = (employer) => {
 			'IncentivePoints',
 			pointsAwarded,
 			'',
-			'0',
-			'0',
-			'0',
+			'1', // AllowSameDay
+			isOngoing,
+			'0', // IsDisabled
 			showInProgram,
 			'0',
 		  '0',
@@ -251,6 +252,7 @@ function handleCsvFiles() {
 		$('#event-image-url').val(cie.EventImageUrl);
 		$('#max-occurrences').val(cie.MaxOccurrences);
 		$('#display-priority').val(cie.DisplayPriority);
+		$('#is-ongoing').val(cie.IsOngoing);
 		$('#show-in-program').val(cie.ShowInProgram);
 		$('#html-description').val(cie.HtmlDescription.replace(/""/g, '"'));
 		$('#subgroup0').val(cie.SubgroupId);
