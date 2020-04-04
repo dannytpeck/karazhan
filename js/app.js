@@ -65,9 +65,9 @@ const createCSV = (employer) => {
 			'IncentivePoints',
 			pointsAwarded,
 			'',
-			'0',
-			'0',
-			'0',
+			'1', // AllowSameDay
+			'0', // IsOngoing
+			'0', // IsDisabled
 			showInProgram,
 			'0',
 		  '0',
